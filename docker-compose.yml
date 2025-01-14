@@ -1,0 +1,12 @@
+services:
+  app-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    container_name: app-cli
+    command: sleep infinity
+    volumes:
+      - ./:/app
+    extra_hosts:
+      - host.docker.internal:host-gateway
