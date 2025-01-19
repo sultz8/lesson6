@@ -13,10 +13,8 @@ function isPrime(int $a): bool
 // $a = 1 - максимум.
 // $a = 2 - минимум.
 // $a = все остальное - сумма.
-function maxInArray(array $nums): int
+function maxInArray(array $nums, int $a): int
 {
     return 0;
 }
 
-
-// Напишите функцию
