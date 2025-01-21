@@ -155,9 +155,19 @@ counterStatic(); // Вывод: 2
 
 function manyArgs(... $args)
 {
+    $sum = 0;
+    foreach ($args as $arg) {
+        $sum += $arg;
+    }
 
+    return $sum;
 }
 
+echo manyArgs() . PHP_EOL;
+echo manyArgs(1) . PHP_EOL;
+echo manyArgs(1, 2) . PHP_EOL;
+echo manyArgs(1, 2, 6, 19) . PHP_EOL;
+echo manyArgs(1, 2, 6, 19) . PHP_EOL;
 
 
 
