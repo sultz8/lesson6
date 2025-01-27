@@ -18,3 +18,13 @@ function maxInArray(array $nums, int $a): int
     return 0;
 }
 
+
+
+
+
+// Рекурсия
+// Написать функцию бинарного поиска в массиве.
+function binarySearch(array $nums, int $entry, int $l, int $r): int
+{
+    return 0;
+}
