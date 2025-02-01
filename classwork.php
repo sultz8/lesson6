@@ -62,3 +62,47 @@ function sumOfDigits(int $n): int
 
 // 0 1 1 2 3 5 8 13
 // 1 2 3 4 5 6 7 8
+
+
+
+// Реализовать функцию, работающую по аналогу array_map
+
+function cube(int $n): int
+{
+    return ($n * $n * $n);
+}
+
+$a = [1, 2, 3, 4, 5];
+$b = array_map('cube', $a);
+print_r($b);
+
+
+function arrayMap(Closure $func, array $array): array
+{
+    return $array;
+}
+
+
+// Реализовать функцию, работающую по аналогу array_filter
+
+$even = function (int $a) {
+    return $a % 2 === 0;
+};
+
+$odd = function (int $a) {
+    return $a % 2 === 0;
+};
+
+$array = [6, 7, 8, 9, 10, 11, 12];
+
+echo "Нечётные:\n";
+print_r(array_filter($array, $odd));
+
+echo "Чётные:\n";
+print_r(array_filter($array, $even));
+
+
+function arrayFilter(Closure $func, array $array): array
+{
+    return $array;
+}

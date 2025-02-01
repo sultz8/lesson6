@@ -73,79 +73,79 @@
 //
 //
 //// Передача по значению и по ссылке:
-//$b = 5;
-//function testFunctionLink(int $arg)
-//{
-//    echo "testFunctionLink: old value = $arg" . PHP_EOL;
-//    $arg = 0;
-//    echo "testFunctionLink: new value = $arg" . PHP_EOL;
-//}
+$b = 5;
+function testFunctionLink(int $arg)
+{
+    echo "testFunctionLink: old value = $arg" . PHP_EOL;
+    $arg = 0;
+    echo "testFunctionLink: new value = $arg" . PHP_EOL;
+}
 //
 //testFunctionOrder($b);
 //echo $b . PHP_EOL;
 //
 //
-//function testFunctionLinkWorking(int &$arg)
-//{
-//    echo "testFunctionLink: old value = $arg" . PHP_EOL;
-//    $arg = 0;
-//    echo "testFunctionLink: new value = $arg" . PHP_EOL;
-//}
+function testFunctionLinkWorking(int &$arg)
+{
+    echo "testFunctionLink: old value = $arg" . PHP_EOL;
+    $arg = 0;
+    echo "testFunctionLink: new value = $arg" . PHP_EOL;
+}
 //testFunctionLinkWorking($b);
 //echo $b . PHP_EOL;
 //
 //
 //// Возврат значений "return"
-//function testReturningFunctionSum(int $a, int $b): int // Возвращаемый тип
-//{
-//    return $a + $b; // работает как break
-//}
+function testReturningFunctionSum(int $a, int $b): int // Возвращаемый тип
+{
+    return $a + $b; // работает как break
+}
 //
 //$sum = testReturningFunctionSum(10, 20);
 //echo $sum . PHP_EOL;
 //
 //
-//function testReturningBirthYear(int $age): int
-//{
-//    $currentYear = date('Y');
-//
-//    return $currentYear - $age;
-//}
+function testReturningBirthYear(int $age): int
+{
+    $currentYear = date('Y');
+
+    return $currentYear - $age;
+}
 //
 //echo testReturningBirthYear(30) . PHP_EOL;
 //
 //
 //
-//// Область видимости переменных
-//function testVisibility(): void
-//{
-//    $x = 10;
-//}
+// Область видимости переменных
+function testVisibility(): void
+{
+    $x = 10;
+}
 //
 //// echo $x; // Ошибка: Переменная $x не определена
 //
 //
 //// Глобальная область видимости:
-//$x = 5;
+$x = 5;
 //
-//function testGlobalVisibility(): void
-//{
-//    global $x;
-//    echo $x . PHP_EOL;
-//}
+function testGlobalVisibility(): void
+{
+    global $x;
+    echo $x . PHP_EOL;
+}
 //
 //testGlobalVisibility(); // Вывод: 5
 
 
 
 // Статические переменные:
-//function counterStatic(): void
-//{
-//    echo "call counterStatic:" . PHP_EOL;
-//    static $count = 0;
-//    $count++;
-//    echo $count . PHP_EOL;
-//}
+function counterStatic(): void
+{
+    echo "call counterStatic:" . PHP_EOL;
+    static $count = 0;
+    $count++;
+    echo $count . PHP_EOL;
+}
 //
 //counterStatic(); // Вывод: 1
 //counterStatic(); // Вывод: 2
@@ -153,15 +153,15 @@
 //
 //
 //
-//function manyArgs(... $args)
-//{
-//    $sum = 0;
-//    foreach ($args as $arg) {
-//        $sum += $arg;
-//    }
-//
-//    return $sum;
-//}
+function manyArgs(... $args)
+{
+    $sum = 0;
+    foreach ($args as $arg) {
+        $sum += $arg;
+    }
+
+    return $sum;
+}
 //
 //echo manyArgs() . PHP_EOL;
 //echo manyArgs(1) . PHP_EOL;
@@ -216,7 +216,7 @@ function factorial(int $n): int
     return $n * factorial($n - 1);
 }
 
-echo factorial(4);
+//echo factorial(4);
 //
 // factorial(4): return 4 * factorial(3):
     // factorial(3): return 3 * factorial(2):
@@ -225,3 +225,117 @@ echo factorial(4);
         // factorial(2): return 2 * 1:
     // factorial(3): return 3 * 2 * 1
 // factorial(4): return 4 * 3 * 2 * 1 => 24
+
+
+
+// Функции переменных
+
+$test = 10;
+$variableName = 'test';
+
+echo $$variableName;
+
+
+function foo(): void
+{
+    echo "В foo()\n";
+}
+
+function bar($arg = ''): void
+{
+    echo "В bar(); аргумент был $arg\n";
+}
+
+// Функция-обёртка для echo
+function echoit($string): void
+{
+    echo $string;
+}
+
+$func = 'foo';
+$func();        // Вызывает функцию foo()
+
+$func = 'bar';
+$func('test');  // Вызывает функцию bar()
+
+$func = 'echoit';
+$func('test'); // Вызывает функцию echoit()
+
+
+function testSum(int $a, int $b): int
+{
+    return $a + $b;
+}
+
+function testMul(int $a, int $b): int
+{
+    return $a * $b;
+}
+
+function testSub(int $a, int $b): int
+{
+    return $a - $b;
+}
+
+$functions = [
+    'testSum',
+    'testMul',
+    'testSub',
+];
+
+$a = 10;
+$b = 15;
+
+echo PHP_EOL;
+foreach ($functions as $function) {
+    echo $function($a, $b) . PHP_EOL;
+}
+
+//echo is_callable($functions[0]); // Проверка можно ли вызвать функцию
+
+$functions[] = 'blob';
+
+foreach ($functions as $function) {
+    if (is_callable($function)) {
+        echo $function($a, $b) . PHP_EOL;
+    }
+}
+
+
+// Closure, анонимные функции
+
+$anonymFunc = function (string $name) {
+    echo "Hi $name" . PHP_EOL;
+};
+
+//$anonymFunc('PHP');
+//$anonymFunc('WORLD');
+
+
+$globalMessage = 'BLob';
+$anonymFuncWIthParam = function (string $name) use ($globalMessage) {
+    echo "Hi $name, $globalMessage" . PHP_EOL;
+};
+
+$anonymFuncWIthParam('PHP');
+
+
+
+// Стрелочные функции
+// fn (argument_list) => expr.
+
+$fn1 = fn($x, $y) => $x + $y;
+
+echo $fn1(2, 3);
+
+$y = 2;
+
+$fn2 = fn($x) => $x + $y;
+
+echo $fn2(4);
+
+
+// Вызов на лету
+
+echo (function (int $a, int $b) { return $a + $b; })(2, 4);
+echo (fn(int $x, int $y) => $x + $y)(2, 4);

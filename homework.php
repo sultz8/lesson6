@@ -28,3 +28,12 @@ function binarySearch(array $nums, int $entry, int $l, int $r): int
 {
     return 0;
 }
+
+
+
+// Реализовать функцию, работающую по аналогу array_reduce
+// https://www.php.net/manual/ru/function.array-reduce.php
+function arrayReduce(array $array, callable $callback, mixed $initial = null): mixed
+{
+    return 0;
+}
