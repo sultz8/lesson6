@@ -40,7 +40,7 @@ function fromNTo1(int $n): void
 
     fromNTo1($n - 1);
 }
-fromNTo1(10);
+//fromNTo1(10);
 
 
 // Вывести все числа от 1 до n
@@ -55,10 +55,46 @@ function fibonacci(int $n): int
     return 0;
 }
 
+/**
+ * @param int $n
+ * @return int
+ *
+ * 456 -> 4 + 5 + 6
+ * 456 % 10 = 6
+ * 45 % 10 = 5
+ * 4 % 10 = 4
+ *
+ * 456 / 10 => 45
+ *
+ * 4 / 10 => 0
+ */
+
+$num = 123;
+$sum = 0;
+
+while ($num != 0) {
+    $d = $num % 10;
+    $num = (int) ($num / 10);
+
+    $sum = $sum + $d;
+}
+
+//echo $sum;
+
 function sumOfDigits(int $n): int
 {
-    return 0;
+    if ($n === 0) { // $n = 456 => 6 + sum(45)
+        return 0;
+    }
+
+    return ($n % 10) + sumOfDigits((int) ($n / 10)); // => 4 + 5 + 6 + 0
 }
+// n = 456
+// sumOfDigits(456):
+    // 6 + sumOfDigits(45)
+
+echo sumOfDigits(123);
+die();
 
 // 0 1 1 2 3 5 8 13
 // 1 2 3 4 5 6 7 8
