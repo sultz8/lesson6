@@ -93,8 +93,8 @@ function sumOfDigits(int $n): int
 // sumOfDigits(456):
     // 6 + sumOfDigits(45)
 
-echo sumOfDigits(123);
-die();
+//echo sumOfDigits(123);
+//die();
 
 // 0 1 1 2 3 5 8 13
 // 1 2 3 4 5 6 7 8
@@ -109,8 +109,11 @@ function cube(int $n): int
 }
 
 $a = [1, 2, 3, 4, 5];
+
+
 $b = array_map('cube', $a);
 print_r($b);
+//die();
 
 
 function arrayMap(Closure $func, array $array): array

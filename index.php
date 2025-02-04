@@ -229,11 +229,13 @@ function factorial(int $n): int
 
 
 // Функции переменных
-
-$test = 10;
+$a = 'Hello world';
+$test = 'a';
 $variableName = 'test';
 
-echo $$variableName;
+//echo $$$variableName;
+
+//die();
 
 
 function foo(): void
@@ -253,14 +255,16 @@ function echoit($string): void
 }
 
 $func = 'foo';
-$func();        // Вызывает функцию foo()
+//$func();       // Вызывает функцию foo()
 
 $func = 'bar';
-$func('test');  // Вызывает функцию bar()
+//$func('test');  // Вызывает функцию bar()
 
 $func = 'echoit';
-$func('test'); // Вызывает функцию echoit()
+//$func('test'); // Вызывает функцию echoit()
 
+$func = 'dasdasd';
+//$func(); Ошибка
 
 function testSum(int $a, int $b): int
 {
@@ -277,19 +281,25 @@ function testSub(int $a, int $b): int
     return $a - $b;
 }
 
-$functions = [
-    'testSum',
-    'testMul',
-    'testSub',
-];
+$functions = ['testSum', 'testMul', 'testSub'];
 
 $a = 10;
 $b = 15;
 
-echo PHP_EOL;
-foreach ($functions as $function) {
-    echo $function($a, $b) . PHP_EOL;
-}
+// $function = 'testSum'
+// 'testSum'(10, 15)
+// $function = 'testMul'
+// 'testMul'(10, 15)
+// $function = 'testMul'
+// 'testSub'(10, 15)
+
+//foreach ($functions as $function) {
+////    echo $function($a, $b) . PHP_EOL;
+//}
+
+//$func = 'testSum';
+//echo is_callable($func);
+//die();
 
 //echo is_callable($functions[0]); // Проверка можно ли вызвать функцию
 
@@ -297,9 +307,23 @@ $functions[] = 'blob';
 
 foreach ($functions as $function) {
     if (is_callable($function)) {
-        echo $function($a, $b) . PHP_EOL;
+//        echo $function($a, $b) . PHP_EOL;
     }
 }
+
+
+function functionWithCallback(string $callback, string $argument): void
+{
+    echo $callback($argument); // 'testFunc'('Sultan')
+}
+
+function testFunc(string $arg): string
+{
+    return "Hello $arg" . PHP_EOL;
+}
+
+functionWithCallback('testFunc', 'SUltan');
+
 
 
 // Closure, анонимные функции
